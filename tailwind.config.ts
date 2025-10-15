@@ -1,9 +1,9 @@
 import type { Config } from 'tailwindcss'
 
 export default {
-  darkMode: 'class',
   theme: {
     extend: {},
   },
+  darkMode: 'class',
   plugins: [],
 } satisfies Config

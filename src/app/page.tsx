@@ -19,6 +19,7 @@ export default function Home() {
             href="#profile"
             data-scroll
             className="font-semibold text-lg tracking-tight text-zinc-900 select-none cursor-pointer"
+            aria-label="KHJ Portfolio Home"
           >
             KHJ Portfolio
           </a>
@@ -57,6 +58,9 @@ export default function Home() {
           </nav>
         </div>
       </header>
+
+      {/* Top background */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[300px] bg-[radial-gradient(100%_100%_at_50%_0%,rgba(107,114,128,0.08)_0,rgba(156,163,175,0.04)_40%,rgba(255,255,255,0)_70%)]" />
 
       {/* Profile */}
       <section id="profile" className="mx-auto max-w-5xl px-4 mt-28 reveal">
@@ -107,7 +111,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects 섹션 */}
+      {/* Projects */}
       <section id="projects" className="mx-auto max-w-5xl px-4 mt-12 reveal">
         <h2 className="text-xl sm:text-2xl font-bold mb-4 text-zinc-900">
           Projects
@@ -180,31 +184,77 @@ export default function Home() {
               <path d="m6 9 6 6 6-6" />
             </svg>
           </summary>
-
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            <RepoCard owner="Kim-HwiJe" repo="hwije-portfolio" />
+            <RepoCard owner="Kim-HwiJe" repo="portfolio" />
           </div>
         </details>
       </section>
 
-      {/* Tech Used */}
-      <section
-        id="tech"
-        className="mx-auto max-w-5xl px-4 mt-16 mb-20 reveal text-center"
-      >
-        <h2 className="text-xl sm:text-2xl font-bold mb-6 text-zinc-900">
+      {/* Tech Used  */}
+      <section id="tech" className="mx-auto max-w-5xl px-4 mt-16 reveal">
+        <h2 className="text-xl sm:text-2xl font-bold mb-6 text-zinc-900 text-center">
           Tech Used
         </h2>
-        <p className="text-zinc-600 mb-6">
-          이 포트폴리오는 Next.js, TailwindCSS, TypeScript, Vercel, GitHub API
-          로 제작되었습니다.
+
+        <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
+          {[
+            {
+              src: '/nextjs-icon.svg',
+              label: 'Next.js',
+              url: 'https://nextjs.org/',
+            },
+            {
+              src: '/typescript-icon.svg',
+              label: 'TypeScript',
+              url: 'https://www.typescriptlang.org/',
+            },
+            {
+              src: '/tailwindcss-icon.svg',
+              label: 'Tailwind CSS',
+              url: 'https://tailwindcss.com/',
+            },
+            {
+              src: '/vercel-icon.svg',
+              label: 'Vercel',
+              url: 'https://vercel.com/',
+            },
+            {
+              src: '/github-icon.svg',
+              label: 'GitHub API',
+              url: 'https://docs.github.com/en/rest',
+            },
+          ].map((t) => (
+            <div key={t.label} className="w-28 flex flex-col items-center">
+              <Link
+                href={t.url}
+                target="_blank"
+                className="h-12 flex items-center justify-center transform transition duration-300 hover:-translate-y-1 hover:opacity-70"
+                aria-label={t.label}
+              >
+                <Image
+                  src={t.src}
+                  alt={t.label}
+                  width={48}
+                  height={48}
+                  className="h-10 w-auto object-contain"
+                  priority={t.label === 'Next.js'}
+                />
+              </Link>
+              <span className="text-sm mt-2 text-zinc-700">{t.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <p className="text-center text-sm text-zinc-500 mt-8">
+          이 포트폴리오는 Next.js, Tailwind, TypeScript, GitHub API, Vercel로
+          제작되었습니다.
         </p>
       </section>
 
       {/* Contact */}
       <section
         id="contact"
-        className="mx-auto max-w-5xl px-4 mt-12 mb-16 reveal text-center"
+        className="mx-auto max-w-5xl px-4 mt-16 mb-20 reveal text-center"
       >
         <h2 className="text-xl sm:text-2xl font-bold mb-4 text-zinc-900">
           Contact
