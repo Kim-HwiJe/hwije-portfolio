@@ -7,27 +7,22 @@ import ClientReveal from '../components/ClientReveal'
 import ScrollNav from '../components/ScrollNav'
 
 export default function Home() {
-  const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID
-
   return (
     <main className="relative text-zinc-800">
       <ClientReveal />
       <ScrollNav />
 
+      {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur border-b border-zinc-200 shadow-[0_1px_6px_rgba(0,0,0,0.04)]">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <a
             href="#profile"
             data-scroll
             className="font-semibold text-lg tracking-tight text-zinc-900 select-none cursor-pointer"
-            aria-label="KHJ Portfolio Home"
           >
             KHJ Portfolio
           </a>
-          <nav
-            aria-label="Main navigation"
-            className="flex items-center gap-3 sm:gap-5 text-sm text-zinc-700"
-          >
+          <nav className="flex items-center gap-3 sm:gap-5 text-sm text-zinc-700">
             <a
               href="#profile"
               data-scroll
@@ -63,8 +58,7 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[300px] bg-[radial-gradient(100%_100%_at_50%_0%,rgba(107,114,128,0.08)_0,rgba(156,163,175,0.04)_40%,rgba(255,255,255,0)_70%)]" />
-
+      {/* Profile */}
       <section id="profile" className="mx-auto max-w-5xl px-4 mt-28 reveal">
         <div className="rounded-2xl border border-zinc-200 bg-white/80 backdrop-blur p-5 sm:p-6 shadow-sm hover:shadow-md transition">
           <div className="flex gap-5 sm:gap-6 items-start">
@@ -113,103 +107,104 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Projects 섹션 */}
       <section id="projects" className="mx-auto max-w-5xl px-4 mt-12 reveal">
         <h2 className="text-xl sm:text-2xl font-bold mb-4 text-zinc-900">
           Projects
         </h2>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          <div className="hover:brightness-95 transition">
-            <ProjectCard
-              title="SafeShare"
-              href="https://crypto-final.vercel.app/"
-              description="암호화 기술을 이용한 안전한 파일 공유 시스템"
-              tags={['Next.js', 'Crypto', 'SafeShare']}
-            />
-          </div>
-          <div className="hover:brightness-95 transition">
-            <ProjectCard
-              title="Clerk Authentication App"
-              href="https://clerk-app-nu.vercel.app"
-              description="Clerk 인증 학습 프로젝트"
-              tags={['Next.js', 'Clerk', 'Auth']}
-            />
-          </div>
+          <ProjectCard
+            title="SafeShare"
+            href="https://crypto-final.vercel.app/"
+            description="암호화 기술을 이용한 안전한 파일 공유 시스템"
+            tags={['Next.js', 'Crypto', 'SafeShare']}
+          />
+          <ProjectCard
+            title="Clerk Authentication App"
+            href="https://clerk-app-nu.vercel.app"
+            description="Clerk 인증 학습 프로젝트"
+            tags={['Next.js', 'Clerk', 'Auth']}
+          />
         </div>
+
+        {/* Projects 더보기 */}
+        <details className="mt-6 group">
+          <summary className="list-none flex justify-center items-center gap-2 text-sm text-zinc-700 hover:text-zinc-900 cursor-pointer select-none">
+            <span className="group-open:hidden">더보기</span>
+            <span className="hidden group-open:inline">접기</span>
+            <svg
+              className="w-4 h-4 transition group-open:rotate-180"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </summary>
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <ProjectCard
+              title="Portfolio"
+              href="https://vercel.com/hwijes-projects/hwije-portfolio"
+              description="포트폴리오 사이트 입니다."
+              tags={['Next.js', 'TailwindCSS', 'TypeScript']}
+            />
+          </div>
+        </details>
       </section>
 
-      <section id="repos" className="mx-auto max-w-5xl px-4 mt-12 mb-10 reveal">
+      {/* GitHub Repositories */}
+      <section id="repos" className="mx-auto max-w-5xl px-4 mt-12 reveal">
         <h2 className="text-xl sm:text-2xl font-bold mb-4 text-zinc-900">
           GitHub Repositories
         </h2>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          <div className="hover:brightness-95 transition">
-            <RepoCard owner="Kim-HwiJe" repo="crypto-final" />
-          </div>
-          <div className="hover:brightness-95 transition">
-            <RepoCard owner="Kim-HwiJe" repo="clerk-app" />
-          </div>
+          <RepoCard owner="Kim-HwiJe" repo="crypto-final" />
+          <RepoCard owner="Kim-HwiJe" repo="clerk-app" />
         </div>
+
+        {/* Repo 더보기 */}
+        <details className="mt-6 group">
+          <summary className="list-none flex justify-center items-center gap-2 text-sm text-zinc-700 hover:text-zinc-900 cursor-pointer select-none">
+            <span className="group-open:hidden">더보기</span>
+            <span className="hidden group-open:inline">접기</span>
+            <svg
+              className="w-4 h-4 transition group-open:rotate-180"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </summary>
+
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <RepoCard owner="Kim-HwiJe" repo="hwije-portfolio" />
+          </div>
+        </details>
       </section>
 
-      <section id="tech" className="mx-auto max-w-5xl px-4 mt-16 reveal">
-        <h2 className="text-xl sm:text-2xl font-bold mb-6 text-zinc-900 text-center">
+      {/* Tech Used */}
+      <section
+        id="tech"
+        className="mx-auto max-w-5xl px-4 mt-16 mb-20 reveal text-center"
+      >
+        <h2 className="text-xl sm:text-2xl font-bold mb-6 text-zinc-900">
           Tech Used
         </h2>
-        <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
-          {[
-            {
-              src: '/nextjs-icon.svg',
-              label: 'Next.js',
-              url: 'https://nextjs.org/',
-            },
-            {
-              src: '/typescript-icon.svg',
-              label: 'TypeScript',
-              url: 'https://www.typescriptlang.org/',
-            },
-            {
-              src: '/tailwindcss-icon.svg',
-              label: 'Tailwind CSS',
-              url: 'https://tailwindcss.com/',
-            },
-            {
-              src: '/vercel-icon.svg',
-              label: 'Vercel',
-              url: 'https://vercel.com/',
-            },
-            {
-              src: '/github-icon.svg',
-              label: 'GitHub API',
-              url: 'https://docs.github.com/en/rest',
-            },
-          ].map((t) => (
-            <div key={t.label} className="w-28 flex flex-col items-center">
-              <Link
-                href={t.url}
-                target="_blank"
-                className="h-12 flex items-center justify-center transform transition duration-300 hover:-translate-y-1 hover:opacity-70"
-              >
-                <Image
-                  src={t.src}
-                  alt={t.label}
-                  width={48}
-                  height={48}
-                  className="h-10 w-auto object-contain"
-                />
-              </Link>
-              <span className="text-sm mt-2 text-zinc-700">{t.label}</span>
-            </div>
-          ))}
-        </div>
-        <p className="text-center text-sm text-zinc-500 mt-8">
-          이 포트폴리오는 Next.js, Tailwind, TypeScript, GitHub API, Vercel로
-          제작되었습니다.
+        <p className="text-zinc-600 mb-6">
+          이 포트폴리오는 Next.js, TailwindCSS, TypeScript, Vercel, GitHub API
+          로 제작되었습니다.
         </p>
       </section>
 
+      {/* Contact */}
       <section
         id="contact"
-        className="mx-auto max-w-5xl px-4 mt-16 mb-20 reveal text-center"
+        className="mx-auto max-w-5xl px-4 mt-12 mb-16 reveal text-center"
       >
         <h2 className="text-xl sm:text-2xl font-bold mb-4 text-zinc-900">
           Contact
@@ -219,11 +214,7 @@ export default function Home() {
         </p>
 
         <form
-          action={
-            formspreeId
-              ? `https://formspree.io/f/${formspreeId}`
-              : 'https://formspree.io/f/REPLACE_FORM_ID'
-          }
+          action="https://formspree.io/f/REPLACE_FORM_ID"
           method="POST"
           className="max-w-md mx-auto mt-6 text-left flex flex-col gap-3"
         >
@@ -255,10 +246,6 @@ export default function Home() {
           </button>
           <input type="hidden" name="_subject" value="포트폴리오 문의" />
         </form>
-
-        <p className="text-xs text-zinc-500 mt-3">
-          제출 시 Formspree를 통해 메일이 전송됩니다.
-        </p>
       </section>
 
       <footer className="mx-auto max-w-6xl px-4 pb-10 text-xs text-zinc-500 text-center">
