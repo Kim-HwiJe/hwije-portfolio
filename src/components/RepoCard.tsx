@@ -1,4 +1,3 @@
-// src/components/RepoCard.tsx (Server Component)
 type Repo = {
   name: string
   description: string | null
@@ -32,8 +31,15 @@ export default async function RepoCard({
   owner: string
   repo: string
 }) {
+  const headers: Record<string, string> = {
+    Accept: 'application/vnd.github+json',
+  }
+  if (process.env.GITHUB_TOKEN) {
+    headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`
+  }
+
   const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
-    headers: { Accept: 'application/vnd.github+json' },
+    headers,
     next: { revalidate: 3600 },
   })
 
@@ -73,11 +79,9 @@ export default async function RepoCard({
           <path d="M7 7h10v10" />
         </svg>
       </div>
-
       {data.description && (
         <p className="mt-1 text-sm text-zinc-600">{data.description}</p>
       )}
-
       <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-zinc-600">
         <span>★ {data.stargazers_count}</span>
         <span>⑂ {data.forks_count}</span>

@@ -7,16 +7,15 @@ import ClientReveal from '../components/ClientReveal'
 import ScrollNav from '../components/ScrollNav'
 
 export default function Home() {
+  const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID
+
   return (
     <main className="relative text-zinc-800">
-      {/* 클라이언트 사이드 동작(리빌/중앙 스크롤) */}
       <ClientReveal />
       <ScrollNav />
 
-      {/* 상단 네비게이션 바: 좌측 로고, 우측 메뉴 */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur border-b border-zinc-200 shadow-[0_1px_6px_rgba(0,0,0,0.04)]">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-          {/* 로고(좌측) */}
           <a
             href="#profile"
             data-scroll
@@ -25,8 +24,6 @@ export default function Home() {
           >
             KHJ Portfolio
           </a>
-
-          {/* 메뉴(우측) */}
           <nav
             aria-label="Main navigation"
             className="flex items-center gap-3 sm:gap-5 text-sm text-zinc-700"
@@ -66,10 +63,8 @@ export default function Home() {
         </div>
       </header>
 
-      {/* 배경 톤 */}
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[300px] bg-[radial-gradient(100%_100%_at_50%_0%,rgba(107,114,128,0.08)_0,rgba(156,163,175,0.04)_40%,rgba(255,255,255,0)_70%)]" />
 
-      {/* Profile */}
       <section id="profile" className="mx-auto max-w-5xl px-4 mt-28 reveal">
         <div className="rounded-2xl border border-zinc-200 bg-white/80 backdrop-blur p-5 sm:p-6 shadow-sm hover:shadow-md transition">
           <div className="flex gap-5 sm:gap-6 items-start">
@@ -93,8 +88,7 @@ export default function Home() {
                   <span className="font-medium">이름</span>: 김휘제
                 </p>
                 <p className="break-all flex items-center gap-2">
-                  <Mail className="h-4 w-4" />
-                  hwije207@naver.com
+                  <Mail className="h-4 w-4" /> hwije207@naver.com
                 </p>
                 <p>
                   <span className="font-medium">소속</span>: 중부대학교
@@ -119,7 +113,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects */}
       <section id="projects" className="mx-auto max-w-5xl px-4 mt-12 reveal">
         <h2 className="text-xl sm:text-2xl font-bold mb-4 text-zinc-900">
           Projects
@@ -144,7 +137,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* GitHub Repositories */}
       <section id="repos" className="mx-auto max-w-5xl px-4 mt-12 mb-10 reveal">
         <h2 className="text-xl sm:text-2xl font-bold mb-4 text-zinc-900">
           GitHub Repositories
@@ -159,12 +151,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tech Used */}
       <section id="tech" className="mx-auto max-w-5xl px-4 mt-16 reveal">
         <h2 className="text-xl sm:text-2xl font-bold mb-6 text-zinc-900 text-center">
           Tech Used
         </h2>
-
         <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
           {[
             {
@@ -211,14 +201,12 @@ export default function Home() {
             </div>
           ))}
         </div>
-
         <p className="text-center text-sm text-zinc-500 mt-8">
           이 포트폴리오는 Next.js, Tailwind, TypeScript, GitHub API, Vercel로
           제작되었습니다.
         </p>
       </section>
 
-      {/* Contact + Formspree 폼 */}
       <section
         id="contact"
         className="mx-auto max-w-5xl px-4 mt-16 mb-20 reveal text-center"
@@ -231,7 +219,11 @@ export default function Home() {
         </p>
 
         <form
-          action="https://formspree.io/f/REPLACE_FORM_ID"
+          action={
+            formspreeId
+              ? `https://formspree.io/f/${formspreeId}`
+              : 'https://formspree.io/f/REPLACE_FORM_ID'
+          }
           method="POST"
           className="max-w-md mx-auto mt-6 text-left flex flex-col gap-3"
         >
