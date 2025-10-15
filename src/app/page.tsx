@@ -1,103 +1,277 @@
-import Image from "next/image";
+import Image from 'next/image'
+import Link from 'next/link'
+import { Github, Mail, User2 } from 'lucide-react'
+import ProjectCard from '../components/ProjectCard'
+import RepoCard from '../components/RepoCard'
+import ClientReveal from '../components/ClientReveal'
+import ScrollNav from '../components/ScrollNav'
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="relative text-zinc-800">
+      {/* 클라이언트 사이드 동작(리빌/중앙 스크롤) */}
+      <ClientReveal />
+      <ScrollNav />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+      {/* 상단 네비게이션 바: 좌측 로고, 우측 메뉴 */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur border-b border-zinc-200 shadow-[0_1px_6px_rgba(0,0,0,0.04)]">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+          {/* 로고(좌측) */}
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#profile"
+            data-scroll
+            className="font-semibold text-lg tracking-tight text-zinc-900 select-none cursor-pointer"
+            aria-label="KHJ Portfolio Home"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+            KHJ Portfolio
           </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+          {/* 메뉴(우측) */}
+          <nav
+            aria-label="Main navigation"
+            className="flex items-center gap-3 sm:gap-5 text-sm text-zinc-700"
           >
-            Read our docs
-          </a>
+            <a
+              href="#profile"
+              data-scroll
+              className="hover:opacity-80 transition"
+            >
+              Profile
+            </a>
+            <a
+              href="#projects"
+              data-scroll
+              className="hover:opacity-80 transition"
+            >
+              Projects
+            </a>
+            <a
+              href="#repos"
+              data-scroll
+              className="hover:opacity-80 transition"
+            >
+              Repositories
+            </a>
+            <a href="#tech" data-scroll className="hover:opacity-80 transition">
+              Tech Used
+            </a>
+            <a
+              href="#contact"
+              data-scroll
+              className="hover:opacity-80 transition"
+            >
+              Contact
+            </a>
+          </nav>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      </header>
+
+      {/* 배경 톤 */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[300px] bg-[radial-gradient(100%_100%_at_50%_0%,rgba(107,114,128,0.08)_0,rgba(156,163,175,0.04)_40%,rgba(255,255,255,0)_70%)]" />
+
+      {/* Profile */}
+      <section id="profile" className="mx-auto max-w-5xl px-4 mt-28 reveal">
+        <div className="rounded-2xl border border-zinc-200 bg-white/80 backdrop-blur p-5 sm:p-6 shadow-sm hover:shadow-md transition">
+          <div className="flex gap-5 sm:gap-6 items-start">
+            <div className="shrink-0">
+              <Image
+                src="/profile.jpg"
+                alt="프로필 사진"
+                width={96}
+                height={96}
+                className="rounded-full object-cover ring-1 ring-zinc-200 shadow-sm"
+                priority
+              />
+            </div>
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 text-lg font-semibold text-zinc-800">
+                <User2 className="h-5 w-5" />
+                <span>Profile</span>
+              </div>
+              <div className="mt-3 grid gap-1 text-sm sm:text-base text-zinc-700">
+                <p>
+                  <span className="font-medium">이름</span>: 김휘제
+                </p>
+                <p className="break-all flex items-center gap-2">
+                  <Mail className="h-4 w-4" />
+                  hwije207@naver.com
+                </p>
+                <p>
+                  <span className="font-medium">소속</span>: 중부대학교
+                  정보보호학전공
+                </p>
+                <p>
+                  <span className="font-medium">학번</span>: 92313867
+                </p>
+                <p className="flex items-center gap-2">
+                  <Github className="h-4 w-4" />
+                  <Link
+                    href="https://github.com/Kim-HwiJe/"
+                    target="_blank"
+                    className="underline underline-offset-4 hover:opacity-90"
+                  >
+                    GitHub 프로필 링크
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects */}
+      <section id="projects" className="mx-auto max-w-5xl px-4 mt-12 reveal">
+        <h2 className="text-xl sm:text-2xl font-bold mb-4 text-zinc-900">
+          Projects
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <div className="hover:brightness-95 transition">
+            <ProjectCard
+              title="SafeShare"
+              href="https://crypto-final.vercel.app/"
+              description="암호화 기술을 이용한 안전한 파일 공유 시스템"
+              tags={['Next.js', 'Crypto', 'SafeShare']}
+            />
+          </div>
+          <div className="hover:brightness-95 transition">
+            <ProjectCard
+              title="Clerk Authentication App"
+              href="https://clerk-app-nu.vercel.app"
+              description="Clerk 인증 학습 프로젝트"
+              tags={['Next.js', 'Clerk', 'Auth']}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* GitHub Repositories */}
+      <section id="repos" className="mx-auto max-w-5xl px-4 mt-12 mb-10 reveal">
+        <h2 className="text-xl sm:text-2xl font-bold mb-4 text-zinc-900">
+          GitHub Repositories
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <div className="hover:brightness-95 transition">
+            <RepoCard owner="Kim-HwiJe" repo="crypto-final" />
+          </div>
+          <div className="hover:brightness-95 transition">
+            <RepoCard owner="Kim-HwiJe" repo="clerk-app" />
+          </div>
+        </div>
+      </section>
+
+      {/* Tech Used */}
+      <section id="tech" className="mx-auto max-w-5xl px-4 mt-16 reveal">
+        <h2 className="text-xl sm:text-2xl font-bold mb-6 text-zinc-900 text-center">
+          Tech Used
+        </h2>
+
+        <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
+          {[
+            {
+              src: '/nextjs-icon.svg',
+              label: 'Next.js',
+              url: 'https://nextjs.org/',
+            },
+            {
+              src: '/typescript-icon.svg',
+              label: 'TypeScript',
+              url: 'https://www.typescriptlang.org/',
+            },
+            {
+              src: '/tailwindcss-icon.svg',
+              label: 'Tailwind CSS',
+              url: 'https://tailwindcss.com/',
+            },
+            {
+              src: '/vercel-icon.svg',
+              label: 'Vercel',
+              url: 'https://vercel.com/',
+            },
+            {
+              src: '/github-icon.svg',
+              label: 'GitHub API',
+              url: 'https://docs.github.com/en/rest',
+            },
+          ].map((t) => (
+            <div key={t.label} className="w-28 flex flex-col items-center">
+              <Link
+                href={t.url}
+                target="_blank"
+                className="h-12 flex items-center justify-center transform transition duration-300 hover:-translate-y-1 hover:opacity-70"
+              >
+                <Image
+                  src={t.src}
+                  alt={t.label}
+                  width={48}
+                  height={48}
+                  className="h-10 w-auto object-contain"
+                />
+              </Link>
+              <span className="text-sm mt-2 text-zinc-700">{t.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <p className="text-center text-sm text-zinc-500 mt-8">
+          이 포트폴리오는 Next.js, Tailwind, TypeScript, GitHub API, Vercel로
+          제작되었습니다.
+        </p>
+      </section>
+
+      {/* Contact + Formspree 폼 */}
+      <section
+        id="contact"
+        className="mx-auto max-w-5xl px-4 mt-16 mb-20 reveal text-center"
+      >
+        <h2 className="text-xl sm:text-2xl font-bold mb-4 text-zinc-900">
+          Contact
+        </h2>
+        <p className="text-zinc-700">
+          프로젝트나 협업 제안은 아래 폼으로 보내주세요.
+        </p>
+
+        <form
+          action="https://formspree.io/f/REPLACE_FORM_ID"
+          method="POST"
+          className="max-w-md mx-auto mt-6 text-left flex flex-col gap-3"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+          <input
+            type="text"
+            name="name"
+            placeholder="이름"
+            required
+            className="w-full rounded-xl border border-zinc-200 bg-white/90 px-3 py-2 outline-none focus:ring-2 focus:ring-zinc-300"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          <input
+            type="email"
+            name="email"
+            placeholder="이메일"
+            required
+            className="w-full rounded-xl border border-zinc-200 bg-white/90 px-3 py-2 outline-none focus:ring-2 focus:ring-zinc-300"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+          <textarea
+            name="message"
+            placeholder="메시지"
+            required
+            className="w-full h-28 rounded-xl border border-zinc-200 bg-white/90 px-3 py-2 outline-none resize-none focus:ring-2 focus:ring-zinc-300"
           />
-          Go to nextjs.org →
-        </a>
+          <button
+            type="submit"
+            className="w-full rounded-xl bg-zinc-900 text-white py-2 font-medium hover:bg-zinc-800 transition"
+          >
+            보내기
+          </button>
+          <input type="hidden" name="_subject" value="포트폴리오 문의" />
+        </form>
+
+        <p className="text-xs text-zinc-500 mt-3">
+          제출 시 Formspree를 통해 메일이 전송됩니다.
+        </p>
+      </section>
+
+      <footer className="mx-auto max-w-6xl px-4 pb-10 text-xs text-zinc-500 text-center">
+        © {new Date().getFullYear()} Hwije Kim · Portfolio
       </footer>
-    </div>
-  );
+    </main>
+  )
 }
