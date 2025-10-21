@@ -185,7 +185,7 @@ export default function Home() {
             </svg>
           </summary>
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            <RepoCard owner="Kim-HwiJe" repo="portfolio" />
+            <RepoCard owner="Kim-HwiJe" repo="hwije-portfolio" />
           </div>
         </details>
       </section>
