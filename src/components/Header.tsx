@@ -15,26 +15,26 @@ export default function Header() {
         </Link>
 
         <nav className="flex items-center gap-3 sm:gap-5 text-sm text-zinc-700">
-          <a href="/#profile" className="hover:opacity-80 transition">
+          <Link href="/#profile" className="hover:opacity-80 transition">
             Profile
-          </a>
-          <a href="/#projects" className="hover:opacity-80 transition">
+          </Link>
+          <Link href="/#projects" className="hover:opacity-80 transition">
             Projects
-          </a>
-          <a href="/#repos" className="hover:opacity-80 transition">
+          </Link>
+          <Link href="/#repos" className="hover:opacity-80 transition">
             Repositories
-          </a>
+          </Link>
 
           <Link href="/team-projects" className="hover:opacity-80 transition">
             Team Projects
           </Link>
 
-          <a href="/#tech" className="hover:opacity-80 transition">
+          <Link href="/#tech" className="hover:opacity-80 transition">
             Tech Used
-          </a>
-          <a href="/#contact" className="hover:opacity-80 transition">
+          </Link>
+          <Link href="/#contact" className="hover:opacity-80 transition">
             Contact
-          </a>
+          </Link>
         </nav>
       </div>
     </header>

@@ -7,6 +7,13 @@ import ClientReveal from '../components/ClientReveal'
 import ScrollNav from '../components/ScrollNav'
 import { getUserRepos } from '@/lib/github'
 
+type GitHubRepo = {
+  name: string
+  owner: {
+    login: string
+  }
+}
+
 export default async function Home() {
   const repos = await getUserRepos()
 
@@ -125,7 +132,7 @@ export default async function Home() {
 
         {/* 자동으로 뿌려주는 메인 2개 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          {mainRepos.map((repo: any) => (
+          {mainRepos.map((repo: GitHubRepo) => (
             <RepoCard
               key={repo.name}
               owner={repo.owner.login}
@@ -151,7 +158,7 @@ export default async function Home() {
           </summary>
 
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            {moreRepos.map((repo: any) => (
+            {moreRepos.map((repo: GitHubRepo) => (
               <RepoCard
                 key={repo.name}
                 owner={repo.owner.login}
@@ -162,7 +169,7 @@ export default async function Home() {
         </details>
       </section>
 
-      {/* Tech Used  */}
+      {/* Tech Used */}
       <section id="tech" className="mx-auto max-w-5xl px-4 mt-16 reveal">
         <h2 className="text-xl sm:text-2xl font-bold mb-6 text-zinc-900 text-center">
           Tech Used
