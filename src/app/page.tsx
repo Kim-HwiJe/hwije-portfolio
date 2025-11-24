@@ -5,59 +5,18 @@ import ProjectCard from '../components/ProjectCard'
 import RepoCard from '../components/RepoCard'
 import ClientReveal from '../components/ClientReveal'
 import ScrollNav from '../components/ScrollNav'
+import { getUserRepos } from '@/lib/github'
 
-export default function Home() {
+export default async function Home() {
+  const repos = await getUserRepos()
+
+  const mainRepos = repos.slice(0, 2)
+  const moreRepos = repos.slice(2, 20)
+
   return (
     <main className="relative text-zinc-800">
       <ClientReveal />
       <ScrollNav />
-
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur border-b border-zinc-200 shadow-[0_1px_6px_rgba(0,0,0,0.04)]">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-          <a
-            href="#profile"
-            data-scroll
-            className="font-semibold text-lg tracking-tight text-zinc-900 select-none cursor-pointer"
-            aria-label="KHJ Portfolio Home"
-          >
-            KHJ Portfolio
-          </a>
-          <nav className="flex items-center gap-3 sm:gap-5 text-sm text-zinc-700">
-            <a
-              href="#profile"
-              data-scroll
-              className="hover:opacity-80 transition"
-            >
-              Profile
-            </a>
-            <a
-              href="#projects"
-              data-scroll
-              className="hover:opacity-80 transition"
-            >
-              Projects
-            </a>
-            <a
-              href="#repos"
-              data-scroll
-              className="hover:opacity-80 transition"
-            >
-              Repositories
-            </a>
-            <a href="#tech" data-scroll className="hover:opacity-80 transition">
-              Tech Used
-            </a>
-            <a
-              href="#contact"
-              data-scroll
-              className="hover:opacity-80 transition"
-            >
-              Contact
-            </a>
-          </nav>
-        </div>
-      </header>
 
       {/* Top background */}
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[300px] bg-[radial-gradient(100%_100%_at_50%_0%,rgba(107,114,128,0.08)_0,rgba(156,163,175,0.04)_40%,rgba(255,255,255,0)_70%)]" />
@@ -132,7 +91,6 @@ export default function Home() {
           />
         </div>
 
-        {/* Projects 더보기 */}
         <details className="mt-6 group">
           <summary className="list-none flex justify-center items-center gap-2 text-sm text-zinc-700 hover:text-zinc-900 cursor-pointer select-none">
             <span className="group-open:hidden">더보기</span>
@@ -147,6 +105,7 @@ export default function Home() {
               <path d="m6 9 6 6 6-6" />
             </svg>
           </summary>
+
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <ProjectCard
               title="Portfolio"
@@ -158,18 +117,24 @@ export default function Home() {
         </details>
       </section>
 
-      {/* GitHub Repositories */}
+      {/* GitHub Repositories (자동) */}
       <section id="repos" className="mx-auto max-w-5xl px-4 mt-12 reveal">
         <h2 className="text-xl sm:text-2xl font-bold mb-4 text-zinc-900">
           GitHub Repositories
         </h2>
 
+        {/* 자동으로 뿌려주는 메인 2개 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          <RepoCard owner="Kim-HwiJe" repo="crypto-final" />
-          <RepoCard owner="Kim-HwiJe" repo="clerk-app" />
+          {mainRepos.map((repo: any) => (
+            <RepoCard
+              key={repo.name}
+              owner={repo.owner.login}
+              repo={repo.name}
+            />
+          ))}
         </div>
 
-        {/* Repo 더보기 */}
+        {/* 더보기 */}
         <details className="mt-6 group">
           <summary className="list-none flex justify-center items-center gap-2 text-sm text-zinc-700 hover:text-zinc-900 cursor-pointer select-none">
             <span className="group-open:hidden">더보기</span>
@@ -184,8 +149,15 @@ export default function Home() {
               <path d="m6 9 6 6 6-6" />
             </svg>
           </summary>
+
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            <RepoCard owner="Kim-HwiJe" repo="hwije-portfolio" />
+            {moreRepos.map((repo: any) => (
+              <RepoCard
+                key={repo.name}
+                owner={repo.owner.login}
+                repo={repo.name}
+              />
+            ))}
           </div>
         </details>
       </section>
@@ -298,6 +270,7 @@ export default function Home() {
         </form>
       </section>
 
+      {/* Footer */}
       <footer className="mx-auto max-w-6xl px-4 pb-10 text-xs text-zinc-500 text-center">
         © {new Date().getFullYear()} Hwije Kim · Portfolio
       </footer>

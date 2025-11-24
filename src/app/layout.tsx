@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import '@/styles/globals.css'
+import Header from '@/components/Header'
 
 export const metadata: Metadata = {
   title: 'KHJ PortFolio',
@@ -14,7 +15,8 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="min-h-screen bg-gradient-to-b from-slate-50 to-white text-zinc-900 antialiased">
-        {children}
+        <Header />
+        <div className="pt-20">{children}</div>
       </body>
     </html>
   )
