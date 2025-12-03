@@ -83,6 +83,7 @@ export default async function Home() {
           Projects
         </h2>
 
+        {/* 기본 2개 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           <ProjectCard
             title="SafeShare"
@@ -98,6 +99,7 @@ export default async function Home() {
           />
         </div>
 
+        {/* 더보기 */}
         <details className="mt-6 group">
           <summary className="list-none flex justify-center items-center gap-2 text-sm text-zinc-700 hover:text-zinc-900 cursor-pointer select-none">
             <span className="group-open:hidden">더보기</span>
@@ -120,6 +122,14 @@ export default async function Home() {
               description="포트폴리오 사이트 입니다."
               tags={['Next.js', 'TailwindCSS', 'TypeScript']}
             />
+
+            {/* 📌 새로 추가된 쇼핑몰 프로젝트 */}
+            <ProjectCard
+              title="Shopping"
+              href="https://my-app-eight-zeta-68.vercel.app/"
+              description="쇼핑몰 예제 사이트입니다."
+              tags={['Next.js', 'Shopping']}
+            />
           </div>
         </details>
       </section>
@@ -130,7 +140,6 @@ export default async function Home() {
           GitHub Repositories
         </h2>
 
-        {/* 자동으로 뿌려주는 메인 2개 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {mainRepos.map((repo: GitHubRepo) => (
             <RepoCard
@@ -141,7 +150,6 @@ export default async function Home() {
           ))}
         </div>
 
-        {/* 더보기 */}
         <details className="mt-6 group">
           <summary className="list-none flex justify-center items-center gap-2 text-sm text-zinc-700 hover:text-zinc-900 cursor-pointer select-none">
             <span className="group-open:hidden">더보기</span>
