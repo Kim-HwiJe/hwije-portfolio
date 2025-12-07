@@ -83,19 +83,21 @@ export default async function Home() {
           Projects
         </h2>
 
-        {/* 기본 2개 */}
+        {/* 기본 노출 2개 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          {/* 1️⃣ 편의점 관리 시스템 (맨 위 배치) */}
+          <ProjectCard
+            title="편의점 관리 시스템"
+            href="https://maket-lovat-psi.vercel.app/"
+            description="편의점 운영을 위한 재고/직원/QR/판매 기능을 갖춘 웹 서비스"
+            tags={['Next.js', 'Express', 'MongoDB', 'FullStack']}
+          />
+          {/* 2️⃣ SafeShare */}
           <ProjectCard
             title="SafeShare"
             href="https://crypto-final.vercel.app/"
             description="암호화 기술을 이용한 안전한 파일 공유 시스템"
             tags={['Next.js', 'Crypto', 'SafeShare']}
-          />
-          <ProjectCard
-            title="Clerk Authentication App"
-            href="https://clerk-app-nu.vercel.app"
-            description="Clerk 인증 학습 프로젝트"
-            tags={['Next.js', 'Clerk', 'Auth']}
           />
         </div>
 
@@ -116,14 +118,21 @@ export default async function Home() {
           </summary>
 
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            {/* Clerk */}
+            <ProjectCard
+              title="Clerk Authentication App"
+              href="https://clerk-app-nu.vercel.app"
+              description="Clerk 인증 학습 프로젝트"
+              tags={['Next.js', 'Clerk', 'Auth']}
+            />
+            {/* Portfolio */}
             <ProjectCard
               title="Portfolio"
               href="https://vercel.com/hwijes-projects/hwije-portfolio"
               description="포트폴리오 사이트 입니다."
               tags={['Next.js', 'TailwindCSS', 'TypeScript']}
             />
-
-            {/* 📌 새로 추가된 쇼핑몰 프로젝트 */}
+            {/* 쇼핑몰 */}
             <ProjectCard
               title="Shopping"
               href="https://my-app-eight-zeta-68.vercel.app/"

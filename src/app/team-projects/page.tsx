@@ -12,10 +12,11 @@ export default function TeamProjectsPage() {
   ]
 
   const project = {
-    title: 'Team Project',
-    description: '우리 팀이 함께 개발한 프로젝트입니다.',
-    repo: 'https://github.com/YourTeam/YourRepo', // 수정 필요
-    deploy: 'https://your-project.vercel.app', // 배포 주소 수정
+    title: '편의점 관리 시스템',
+    description: '편의점 운영을 위한 재고/직원/QR/판매 기능을 갖춘 웹 서비스',
+    repo: 'https://github.com/Kim-HwiJe/maket',
+    deploy: 'https://maket-lovat-psi.vercel.app/',
+    image: '/placeholder-project.png',
   }
 
   return (
@@ -30,7 +31,7 @@ export default function TeamProjectsPage() {
           {members.map((m) => (
             <div
               key={m.name}
-              className="border rounded-xl p-4 bg-white shadow-sm"
+              className="border rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition"
             >
               <p className="text-lg font-semibold">{m.name}</p>
               <p className="text-sm text-zinc-600">{m.role}</p>
@@ -39,29 +40,41 @@ export default function TeamProjectsPage() {
         </div>
       </section>
 
-      {/* 팀 프로젝트 */}
+      {/* 프로젝트 카드 */}
       <section>
         <h2 className="text-2xl font-semibold mb-4">Project</h2>
 
-        <div className="p-5 border rounded-xl bg-white shadow-sm">
-          <h3 className="text-xl font-bold">{project.title}</h3>
-          <p className="text-sm text-zinc-600 mt-1">{project.description}</p>
+        <div className="border rounded-xl overflow-hidden bg-white shadow-md hover:shadow-lg transition duration-200">
+          {/* 이미지 */}
+          <div className="w-full bg-neutral-100 border-b">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-auto object-contain rounded-t-xl"
+            />
+          </div>
 
-          <div className="mt-4 flex flex-col gap-2 text-sm">
-            <a
-              href={project.repo}
-              target="_blank"
-              className="text-blue-600 underline"
-            >
-              GitHub Repository
-            </a>
-            <a
-              href={project.deploy}
-              target="_blank"
-              className="text-green-600 underline"
-            >
-              배포된 사이트 바로가기
-            </a>
+          {/* 내용 */}
+          <div className="p-6">
+            <h3 className="text-xl font-bold">{project.title}</h3>
+            <p className="text-sm text-zinc-600 mt-1">{project.description}</p>
+
+            <div className="mt-5 flex gap-3">
+              <a
+                href={project.deploy}
+                target="_blank"
+                className="bg-green-600 text-white px-4 py-2 rounded-md text-sm hover:bg-green-700 transition"
+              >
+                사이트 방문
+              </a>
+              <a
+                href={project.repo}
+                target="_blank"
+                className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition"
+              >
+                GitHub 보기
+              </a>
+            </div>
           </div>
         </div>
       </section>
