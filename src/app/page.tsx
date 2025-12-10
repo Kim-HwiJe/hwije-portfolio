@@ -128,7 +128,7 @@ export default async function Home() {
             {/* Portfolio */}
             <ProjectCard
               title="Portfolio"
-              href="https://vercel.com/hwijes-projects/hwije-portfolio"
+              href="https://hwije-portfolio.vercel.app/"
               description="포트폴리오 사이트 입니다."
               tags={['Next.js', 'TailwindCSS', 'TypeScript']}
             />
